@@ -2,6 +2,8 @@
 
 const _ = require('lodash');
 const cli = require('commander');
+const fileUrl = require('file-url');
+const isUrl = require('is-url');
 const minimist = require('minimist');
 const puppeteer = require('puppeteer');
 
@@ -14,7 +16,7 @@ cli
   .option('-ht, --headerTemplate [template]', 'HTML template for the print header.')
   .option('-ft, --footerTemplate [template]', 'HTML template for the print footer.')
   .option('-ht, --printBackground', 'Print background graphics.', false)
-  .option('-ft, --landscape', 'Paper orientation.', false)
+  .option('-l, --landscape', 'Paper orientation.', false)
   .option('-pr, --pageRanges <range>', 'Paper ranges to print, e.g., \'1-5, 8, 11-13\'. Defaults to the empty string, which means print all pages.')
   .option('-f, --format [format]', 'Paper format. If set, takes priority over width or height options. Defaults to \'Letter\'.', 'Letter')
   .option('-w, --width [width]', 'Paper width, accepts values labeled with units.')
@@ -45,13 +47,13 @@ cli
       }
     }
   })
-  
-  // Get URL from first argument
-  const url = _.first(cli.args)
 
   const browser = await puppeteer.launch()
   const page = await browser.newPage()
-  await page.goto(url, {
+
+  // Get URL / file path from first argument
+  const location = _.first(cli.args)
+  await page.goto(isUrl(location) ? location : fileUrl(location), {
     waitUntil: 'networkidle2'
   })
   await page.pdf(options)

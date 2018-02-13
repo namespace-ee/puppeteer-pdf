@@ -8,6 +8,8 @@
   "main": "puppeteer-pdf.js",
   "dependencies": {
     "commander": "^2.14.1",
+    "file-url": "^2.0.2",
+    "is-url": "^1.2.2",
     "lodash": "^4.17.5",
     "minimist": "^1.2.0",
     "puppeteer": "^1.0.0"
