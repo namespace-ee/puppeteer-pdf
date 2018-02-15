@@ -3,6 +3,7 @@
 const _ = require('lodash');
 const cli = require('commander');
 const fileUrl = require('file-url');
+const fs = require('fs');
 const isUrl = require('is-url');
 const minimist = require('minimist');
 const puppeteer = require('puppeteer');
@@ -11,7 +12,7 @@ const puppeteer = require('puppeteer');
 cli
   .version('0.1.0')
   .option('-p, --path <path>', 'The file path to save the PDF to.')
-  .option('-s, --scale [scale]', 'Scale of the webpage rendering.', parseInt, 1)
+  .option('-s, --scale [scale]', 'Scale of the webpage rendering.', parseFloat, 1)
   .option('-dhf, --displayHeaderFooter', 'Display header and footer.', false)
   .option('-ht, --headerTemplate [template]', 'HTML template for the print header.')
   .option('-ft, --footerTemplate [template]', 'HTML template for the print footer.')
@@ -25,7 +26,7 @@ cli
   .option('-mr, --marginRight [margin]', 'Right margin, accepts values labeled with units.')
   .option('-mb, --marginBottom [margin]', 'Bottom margin, accepts values labeled with units.')
   .option('-ml, --marginLeft [margin]', 'Left margin, accepts values labeled with units.')
-  .option('-d, --debug', 'Output PDF creation options')
+  .option('-d, --debug', 'Output Puppeteer PDF options')
   .action(function(required, optional) {
     // TODO: Implement required arguments validation
   })
@@ -49,6 +50,13 @@ cli
     }
   })
 
+  // Check if we need to read header or footer templates from files
+  _.each(['headerTemplate', 'footerTemplate'], function(template) {
+    if (_.get(options, template, '').startsWith('file://')) {
+      options[template] = fs.readFileSync(options['headerTemplate'].replace('file://', ''), 'utf-8')
+    }
+  })
+
   const browser = await puppeteer.launch()
   const page = await browser.newPage()
 
@@ -57,6 +65,7 @@ cli
   await page.goto(isUrl(location) ? location : fileUrl(location), {
     waitUntil: 'networkidle2'
   })
+  // Output options if in debug mode
   if (cli.debug) {
     console.log(options)
   }
