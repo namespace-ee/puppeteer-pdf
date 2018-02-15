@@ -25,8 +25,6 @@ cli
   .option('-ml, --marginLeft [margin]', 'Left margin, accepts values labeled with units.')
   .action(function(required, optional) {
     // TODO: Implement required arguments validation
-    console.log(required);
-    console.log(optional);
   })
   .parse(process.argv);
 
@@ -56,7 +54,6 @@ cli
   await page.goto(url, {
     waitUntil: 'networkidle2'
   })
-  console.log(options)
   await page.pdf(options)
 
   await browser.close()
