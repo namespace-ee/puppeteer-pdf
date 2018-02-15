@@ -9,7 +9,7 @@ const puppeteer = require('puppeteer');
 cli
   .version('0.1.0')
   .option('-p, --path <path>', 'The file path to save the PDF to.')
-  .option('-s, --scale [scale]', 'Scale of the webpage rendering.', parseInt, 1)
+  .option('-s, --scale [scale]', 'Scale of the webpage rendering.', parseFloat, 1)
   .option('-dhf, --displayHeaderFooter', 'Display header and footer.', false)
   .option('-ht, --headerTemplate [template]', 'HTML template for the print header.')
   .option('-ft, --footerTemplate [template]', 'HTML template for the print footer.')
@@ -25,6 +25,8 @@ cli
   .option('-ml, --marginLeft [margin]', 'Left margin, accepts values labeled with units.')
   .action(function(required, optional) {
     // TODO: Implement required arguments validation
+    console.log(required);
+    console.log(optional);
   })
   .parse(process.argv);
 
@@ -45,7 +47,7 @@ cli
       }
     }
   })
-  
+
   // Get URL from first argument
   const url = _.first(cli.args)
 
@@ -54,6 +56,7 @@ cli
   await page.goto(url, {
     waitUntil: 'networkidle2'
   })
+  console.log(options)
   await page.pdf(options)
 
   await browser.close()
