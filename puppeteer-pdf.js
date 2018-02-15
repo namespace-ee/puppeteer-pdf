@@ -15,7 +15,7 @@ cli
   .option('-dhf, --displayHeaderFooter', 'Display header and footer.', false)
   .option('-ht, --headerTemplate [template]', 'HTML template for the print header.')
   .option('-ft, --footerTemplate [template]', 'HTML template for the print footer.')
-  .option('-ht, --printBackground', 'Print background graphics.', false)
+  .option('-pb, --printBackground', 'Print background graphics.', false)
   .option('-l, --landscape', 'Paper orientation.', false)
   .option('-pr, --pageRanges <range>', 'Paper ranges to print, e.g., \'1-5, 8, 11-13\'. Defaults to the empty string, which means print all pages.')
   .option('-f, --format [format]', 'Paper format. If set, takes priority over width or height options. Defaults to \'Letter\'.', 'Letter')
@@ -25,6 +25,7 @@ cli
   .option('-mr, --marginRight [margin]', 'Right margin, accepts values labeled with units.')
   .option('-mb, --marginBottom [margin]', 'Bottom margin, accepts values labeled with units.')
   .option('-ml, --marginLeft [margin]', 'Left margin, accepts values labeled with units.')
+  .option('-d, --debug', 'Output PDF creation options')
   .action(function(required, optional) {
     // TODO: Implement required arguments validation
   })
@@ -56,6 +57,9 @@ cli
   await page.goto(isUrl(location) ? location : fileUrl(location), {
     waitUntil: 'networkidle2'
   })
+  if (cli.debug) {
+    console.log(options)
+  }
   await page.pdf(options)
 
   await browser.close()
