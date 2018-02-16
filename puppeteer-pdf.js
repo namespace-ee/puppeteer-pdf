@@ -53,7 +53,7 @@ cli
   // Check if we need to read header or footer templates from files
   _.each(['headerTemplate', 'footerTemplate'], function(template) {
     if (_.get(options, template, '').startsWith('file://')) {
-      options[template] = fs.readFileSync(options['headerTemplate'].replace('file://', ''), 'utf-8')
+      options[template] = fs.readFileSync(options[template].replace('file://', ''), 'utf-8')
     }
   })
 
