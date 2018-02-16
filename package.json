@@ -1,7 +1,7 @@
 {
   "name": "puppeteer-pdf",
   "author": "Namespace OÜ <info@namespace.ee>",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A command line tool to generate PDF from URLs with electron.",
   "preferGlobal": true,
   "bin": "./puppeteer-pdf.js",
