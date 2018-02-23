@@ -5,7 +5,6 @@ const cli = require('commander');
 const fileUrl = require('file-url');
 const fs = require('fs');
 const isUrl = require('is-url');
-const minimist = require('minimist');
 const puppeteer = require('puppeteer');
 
 
@@ -32,7 +31,7 @@ cli
   })
   .parse(process.argv);
 
-(async function () {
+(async () => {
   let options = {}
 
   // Loop through options
@@ -57,7 +56,7 @@ cli
     }
   })
 
-  const browser = await puppeteer.launch()
+  const browser = await puppeteer.launch({args: ['--no-sandbox']})
   const page = await browser.newPage()
 
   // Get URL / file path from first argument
