@@ -32,7 +32,7 @@ cli
   })
   .parse(process.argv);
 
-(async () => {
+(async function () {
   let options = {}
 
   // Loop through options
