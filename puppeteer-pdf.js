@@ -9,7 +9,7 @@ const puppeteer = require('puppeteer');
 
 
 cli
-  .version('0.1.0')
+  .version('1.1.3')
   .option('-p, --path <path>', 'The file path to save the PDF to.')
   .option('-s, --scale [scale]', 'Scale of the webpage rendering.', parseFloat, 1)
   .option('-dhf, --displayHeaderFooter', 'Display header and footer.', false)
