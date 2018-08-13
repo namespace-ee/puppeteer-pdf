@@ -42,8 +42,7 @@ puppeteer-pdf tests/test.html \
   --path demo.pdf \
   --landscape \
   --debug \
-  --waitUntil networkidle0 \
-  --displayHeaderFooter
+  --waitUntil networkidle0
 ```
 
 ```shell
