@@ -26,7 +26,7 @@ puppeteer-pdf --help
     -pr, --pageRanges <range>         Paper ranges to print, e.g., '1-5, 8, 11-13'. Defaults to the empty string, which means print all pages.
     -f, --format [format]             Paper format. If set, takes priority over width or height options. Defaults to 'Letter'. (default: Letter)
     -w, --width [width]               Paper width, accepts values labeled with units.
-    -h, --heigh [height]              Paper height, accepts values labeled with units.
+    -h, --height [height]             Paper height, accepts values labeled with units.
     -mt, --marginTop [margin]         Top margin, accepts values labeled with units.
     -mr, --marginRight [margin]       Right margin, accepts values labeled with units.
     -mb, --marginBottom [margin]      Bottom margin, accepts values labeled with units.

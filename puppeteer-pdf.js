@@ -33,15 +33,14 @@ cli
   )
   .option(
     "-f, --format [format]",
-    "Paper format. If set, takes priority over width or height options. Defaults to 'Letter'.",
-    "Letter"
+    "Paper format. If set, takes priority over width or height options. Defaults to 'Letter'."
   )
   .option(
     "-w, --width [width]",
     "Paper width, accepts values labeled with units."
   )
   .option(
-    "-h, --heigh [height]",
+    "-h, --height [height]",
     "Paper height, accepts values labeled with units."
   )
   .option(
