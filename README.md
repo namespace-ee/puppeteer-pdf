@@ -31,6 +31,7 @@ puppeteer-pdf --help
     -mr, --marginRight [margin]       Right margin, accepts values labeled with units.
     -mb, --marginBottom [margin]      Bottom margin, accepts values labeled with units.
     -ml, --marginLeft [margin]        Left margin, accepts values labeled with units.
+    -stb, --setTransparentBackground  Sets transparent background in resulting PDF. Uses the workaround described here: https://github.com/GoogleChrome/puppeteer/issues/2545#issuecomment-397590569
     -d, --debug                       Output Puppeteer PDF options
     -wu, --waitUntil [choice]         waitUntil accepts choices load, domcontentloaded, networkidle0, networkidle2. Defaults to 'networkidle2'. (default: networkidle2)
     -h, --help                        output usage information

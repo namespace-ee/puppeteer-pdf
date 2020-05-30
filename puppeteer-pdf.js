@@ -66,6 +66,7 @@ cli
     "waitUntil accepts choices load, domcontentloaded, networkidle0, networkidle2. Defaults to 'networkidle2'.",
     "networkidle2"
   )
+  .option("-stb, --setTransparentBackground", "Set transparent background.", false)
   .action(function(required, optional) {
     // TODO: Implement required arguments validation
   })
@@ -115,6 +116,14 @@ cli
   if (cli.debug) {
     console.log(options);
   }
+  
+  if (cli.setTransparentBackground) {
+    await page._emulationManager._client.send(
+      'Emulation.setDefaultBackgroundColorOverride',
+      { color: { r: 0, g: 0, b: 0, a: 0 } }
+    );
+  }
+
   await page.pdf(options);
 
   await browser.close();
